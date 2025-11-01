@@ -1,0 +1,67 @@
+# discord_stroke_support_bot
+
+A Discord bot to provide support resources and immediate guidance for users experiencing or witnessing stroke symptoms. This repository contains the bot implementation and configuration to run it in a Discord server.
+
+## Features
+- Detects keywords related to stroke symptoms and shares guidance and emergency contacts.
+- Provides quick steps for recognizing stroke (e.g., FAST).
+- Offers links to resources and local emergency numbers (configurable).
+- Configurable alerting and logging.
+
+## Requirements
+- A Discord application and bot token
+- Node.js >= 16 or Python 3.8+ (depends on implementation in this repo)
+- Environment to host the bot (VM, container, or serverless)
+
+## Installation
+1. Clone the repository:
+
+   git clone https://github.com/behrensger/discord_stroke_support_bot.git
+   cd discord_stroke_support_bot
+
+2. Install dependencies (example for Node.js):
+
+   npm install
+
+   Or for Python (if applicable):
+
+   pip install -r requirements.txt
+
+## Configuration
+Create a .env file or set environment variables with the following values:
+
+- DISCORD_TOKEN: Your Discord bot token
+- GUILD_ID: (Optional) Guild/server ID to restrict commands during development
+- EMERGENCY_CONTACT: (Optional) Local emergency number to display
+- LOG_LEVEL: (Optional) logging verbosity (info, debug, warn)
+
+Example .env:
+
+DISCORD_TOKEN=your_discord_token_here
+GUILD_ID=123456789012345678
+EMERGENCY_CONTACT=911
+LOG_LEVEL=info
+
+## Usage
+Start the bot (example for Node.js):
+
+   npm start
+
+Or for Python:
+
+   python bot.py
+
+Once running, invite the bot to your server using the OAuth2 URL with appropriate bot permissions (sending messages, reading message history).
+
+## Contributing
+Contributions are welcome. Please open an issue to discuss changes or submit a pull request with tests and documentation.
+
+## Security
+Never commit your bot token or other secrets to the repository. Use environment variables or a secrets manager.
+
+## License
+Specify a license for the project (e.g., MIT).
+
+---
+
+This README was added by GitHub Copilot to provide an initial project overview. Please edit to reflect the repository's actual implementation details.
