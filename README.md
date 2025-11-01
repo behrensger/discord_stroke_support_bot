@@ -17,11 +17,7 @@ On the long road to recovery from a stroke, this bot is intended to provide the 
    git clone https://github.com/behrensger/discord_stroke_support_bot.git
    cd discord_stroke_support_bot
 
-2. Install dependencies (example for Node.js):
-
-   npm install
-
-   Or for Python (if applicable):
+2. Install dependencies for Python (if applicable):
 
    pip install -r requirements.txt
 
