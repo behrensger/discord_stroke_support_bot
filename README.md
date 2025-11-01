@@ -1,16 +1,14 @@
-# discord_stroke_support_bot
+# Discord Stroke Support Bot
 
-A Discord bot to provide support resources and immediate guidance for users experiencing or witnessing stroke symptoms. This repository contains the bot implementation and configuration to run it in a Discord server.
+On the long road to recovery from a stroke, this bot is intended to provide the affected individual with several helpful tools.
 
 ## Features
-- Detects keywords related to stroke symptoms and shares guidance and emergency contacts.
-- Provides quick steps for recognizing stroke (e.g., FAST).
-- Offers links to resources and local emergency numbers (configurable).
+- Provides a configurable medication reminder.
 - Configurable alerting and logging.
 
 ## Requirements
 - A Discord application and bot token
-- Node.js >= 16 or Python 3.8+ (depends on implementation in this repo)
+- Python 3.8+ (depends on implementation in this repo)
 - Environment to host the bot (VM, container, or serverless)
 
 ## Installation
