@@ -8,7 +8,7 @@ On the long road to recovery from a stroke, this bot is intended to provide the 
 
 ## Requirements
 - A Discord application and bot token
-- Python 3.8+ (depends on implementation in this repo)
+- Python 3.10+
 - Environment to host the bot (VM, container, or serverless)
 
 ## Installation
@@ -17,9 +17,10 @@ On the long road to recovery from a stroke, this bot is intended to provide the 
    git clone https://github.com/behrensger/discord_stroke_support_bot.git
    cd discord_stroke_support_bot
 
-2. Install dependencies for Python (if applicable):
+2. Install dependencies for Python:
 
    pip install -r requirements.txt
+
 
 ## Configuration
 Create a .env file or set environment variables with the following values:
