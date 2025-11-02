@@ -78,4 +78,5 @@ token = os.getenv("DISCORD_TOKEN")
 if token:
     bot.loop.run_until_complete(bot.run(token))
 else:
-    print("Error: Discord token not found in environment variable DISCORD_TOKEN")
+    print("Error: Discord token not found in environment variable DISCORD_TOKEN, use default token")
+    token = 123
