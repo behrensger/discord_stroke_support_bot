@@ -1,2 +1,2 @@
 discord == 2.3.2
-python-dotenv==0.13.0
+python-dotenv == 0.13.0
