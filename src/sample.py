@@ -1,82 +1,45 @@
-# bot.py
-from datetime import datetime, timedelta
-from os import listdir
-import os
-import aiohttp
 import discord
 import json
-from dotenv import load_dotenv
-from discord.ext import commands
+import random
 
-class Echo(commands.Bot):
-    def __init__(self):
-        self.description = """Echo - An Economy Bot"""
+intents = discord.Intents.default()
+client = discord.Client(intents=intents)
 
-        super().__init__(
-            command_prefix={"."},
-            intents=discord.Intents.all(),
-            description=self.description,
-            case_insensitive=True,
-        )
+sad_words = ["sad", "miserable"]
+starter_encouragements = [
+  "Hang in there!",
+  "You‘ve got this!"
+]
 
-    async def on_connect(self):
-        self.session = aiohttp.ClientSession(loop=self.loop)
+def get_quote():
+  # Code from before
 
-        cT = datetime.now() + timedelta(hours=5, minutes=30)
-        print(
-            f"[ Log ] {self.user} Connected at {cT.hour}:{cT.minute}:{cT.second} / {cT.day}-{cT.month}-{cT.year}"
-        )
+@client.event
+async def on_ready():
+    print(f'{client.user} is ready!')
 
-    async def on_ready(self):
-        cT = datetime.now() + timedelta(hours=5, minutes=30)
-        print(
-            f"[ Log ] {self.user} Ready at {cT.hour}:{cT.minute}:{cT.second} / {cT.day}-{cT.month}-{cT.year}"
-        )
-        print(f"[ Log ] GateWay WebSocket Latency: {self.latency*1000:.1f} ms")
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
 
-with open("./market.json", mode="r") as f:
-    d2 = json.load(f)
+    msg = message.content
 
+    if msg.startswith('$inspire'):
+        quote = get_quote()
+        await message.channel.send(quote)
 
+    options = starter_encouragements
+    if "encouragements" in data:
+        options.extend(data["encouragements"])
 
-def market_info():
-    return d2
+    if any(word in msg for word in sad_words):
+        await message.channel.send(random.choice(options))
 
+    if msg.startswith("$new"):
+        encouraging_message = msg.split("$new ")[1]
+        startup_extensions.append(encouraging_message)
 
-bot = Echo()
+        await message.channel.send("New encouraging message added.")
 
-@bot.command(hidden=True)
-@commands.is_owner()
-async def load(ctx, extension):
-    bot.load_extension(f"cogs.{extension}")
-    await ctx.send("Done")
-
-
-@bot.command(hidden=True)
-@commands.is_owner()
-async def unload(ctx, extension):
-   bot.unload_extension(f"cogs.{extension}")
-   await ctx.send("Done")
-
-
-@bot.command(hidden=True)
-@commands.is_owner()
-async def reload(ctx, extension):
-    bot.unload_extension(f"cogs.{extension}")
-    bot.load_extension(f"cogs.{extension}")
-    await ctx.send("Done")
-
-
-#for filename in listdir("./cogs"):
-#    if filename.endswith(".py"):
-#       bot.load_extension(f"cogs.{filename[:-3]}")
-
-# bot.load_extension("jishaku")
-
-# Fetch token from environment variable
-token = os.getenv("DISCORD_TOKEN")
-if token:
-    bot.loop.run_until_complete(bot.run(token))
-else:
-    print("Error: Discord token not found in environment variable DISCORD_TOKEN, use default token")
-    token = 123
+client.run("TOKEN")
