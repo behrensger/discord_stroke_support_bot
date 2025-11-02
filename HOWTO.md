@@ -1,0 +1,3 @@
+- https://realpython.com/how-to-make-a-discord-bot-python/
+- https://discord.com/developers/applications/1434256963637874842/information
+- 

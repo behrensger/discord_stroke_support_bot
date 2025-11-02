@@ -1,4 +1,4 @@
-# Discord Stroke Support Bot
+# Discord Stroke Assistant Bot
 
 On the long road to recovery from a stroke, this bot is intended to provide the affected individual with several helpful tools.
 
@@ -37,11 +37,7 @@ EMERGENCY_CONTACT=911
 LOG_LEVEL=info
 
 ## Usage
-Start the bot (example for Node.js):
-
-   npm start
-
-Or for Python:
+Start the bot for Python:
 
    python bot.py
 
