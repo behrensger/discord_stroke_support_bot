@@ -27,7 +27,7 @@ class MyClient(discord.Client):
                     f.write("username,today,systolic,diastolic\n")
             with open(f'{username}.csv', "a", encoding="utf-8") as f:
                 f.write(f'{username},{today.isoformat()},{split[1].strip()}, {split[2].strip()}\n')
-            await message.channel.send(f'Protokoll: {split[1]}, {split[2]} and timestap: {today}')
+            await message.channel.send(f'Wrote Protokol: {split[1]}, {split[2]} and timestap: {today}')
             logger.info(f'Protokoll: {username} for {split[1]}, {split[2]} and {today}')
 
 
