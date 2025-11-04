@@ -20,15 +20,19 @@ class MyClient(discord.Client):
             return
 
         if user_message.count("proto"):
-            split = user_message.split()
             today = datetime.datetime.now()
+            split = user_message.split()
+            sys = int(split[1].strip())
+            dis = int(split[2].strip())
+            if sys < 80 or dis > 270 or dis < 60 or dis > 100:
+                await message.channel.send(f'Cannot write protocol because values {sys}, {dis} either to big or to small')
+                return
             if not os.path.isfile(f'{username}.csv'):
                 with open(f'{username}.csv', "a", encoding="utf-8") as f:
                     f.write("username,today,systolic,diastolic\n")
             with open(f'{username}.csv', "a", encoding="utf-8") as f:
-                f.write(f'{username},{today.isoformat()},{split[1].strip()}, {split[2].strip()}\n')
-            await message.channel.send(f'Wrote Protokol: {split[1]}, {split[2]} and timestap: {today}')
-            logger.info(f'Protokoll: {username} for {split[1]}, {split[2]} and {today}')
+                f.write(f'{username},{today.isoformat()},{sys}, {dis}\n')
+            await message.channel.send(f'Wrote Protokol: {sys}, {dis} on {today.strftime("%d. %B %Y %I:%M%p")}')
 
 
 #############################################
