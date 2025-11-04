@@ -15,7 +15,7 @@ class MyClient(discord.Client):
 
     async def on_message(self, message: discord.Message):
         username = str(message.author).split("#")[0]
-        channel = str(message.channel.name)
+        channel = "Channel" #str(message.channel.name) || "Direct Message"
         user_message = message.content.lower()
         logger.info(f'Incoming Message {user_message} by {username} on {channel}')
 
@@ -24,13 +24,13 @@ class MyClient(discord.Client):
 
         if user_message.count("proto"):
             today = datetime.datetime.now()
-            split = re.split(r'[+,.\s]+', user_message.strip())
+            split = re.split(r'[+\-,;.\s]+', user_message.strip())
             if len(split) != 3 and split[0] != 'proto':
                 await message.channel.send(f'Cannot write protocol because values will not be understood')
                 return
             sys = int(split[1].strip())
             dis = int(split[2].strip())
-            if sys < 80 or dis > 270 or dis < 60 or dis > 100:
+            if sys < 60 or dis > 270 or dis < 40 or dis > 120:
                 await message.channel.send(
                     f'Cannot write protocol because values {sys} or {dis} either to big or to small')
                 return
