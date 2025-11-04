@@ -3,6 +3,7 @@ import os
 import discord
 import logging
 import datetime
+import re
 from dotenv import load_dotenv
 logger = logging.getLogger(__name__)
 
@@ -21,11 +22,15 @@ class MyClient(discord.Client):
 
         if user_message.count("proto"):
             today = datetime.datetime.now()
-            split = user_message.split()
+            split = re.split(r'[+,.\s]+', user_message.strip())
+            if len(split) != 3 and split[0] != 'proto':
+                await message.channel.send(
+                    f'Cannot write protocol because values will not be understood')
+                return
             sys = int(split[1].strip())
             dis = int(split[2].strip())
             if sys < 80 or dis > 270 or dis < 60 or dis > 100:
-                await message.channel.send(f'Cannot write protocol because values {sys}, {dis} either to big or to small')
+                await message.channel.send(f'Cannot write protocol because values {sys} or {dis} either to big or to small')
                 return
             if not os.path.isfile(f'{username}.csv'):
                 with open(f'{username}.csv', "a", encoding="utf-8") as f:
