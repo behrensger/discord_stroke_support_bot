@@ -15,9 +15,8 @@ class MyClient(discord.Client):
 
     async def on_message(self, message: discord.Message):
         username = str(message.author).split("#")[0]
-        channel = "Channel" #str(message.channel.name) || "Direct Message"
         user_message = message.content.lower()
-        logger.info(f'Incoming Message {user_message} by {username} on {channel}')
+        logger.info(f'Incoming Message {user_message} by {username}')
 
         if message.author == client.user:
             return
